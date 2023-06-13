@@ -5,6 +5,7 @@ package MathRun;
 
 import java.util.Arrays;
 import java.util.Random;
+import java.util.Scanner;
 import java.util.stream.IntStream;
 
 public class Main
@@ -31,27 +32,111 @@ public class Main
                 System.out.printf(arr[i][j] + " ");
             System.out.println();
         }
-        int rnd = new Random().nextInt(arr[0].length);
-        System.out.println("Random number from the arr[0]= "+arr[0][rnd]);
 
-        int rnd2 = new Random().nextInt(arr[1].length);
-        System.out.println("Random number from the arr[0]= "+arr[1][rnd2]);
+        char status = 'n';
+        Scanner sc = new Scanner(System.in);
+        while(status=='n' || status=='N')
+        {
+            int rnd = new Random().nextInt(arr[0].length);
+            int no_gen = arr[0][rnd];
+            System.out.println("Random number from the arr[0]= "+no_gen);
 
-        int rnd3 = new Random().nextInt(arr[2].length);
-        System.out.println("Random number from the arr[0]= "+arr[2][rnd3]);
+            int rnd2 = new Random().nextInt(arr[1].length);
+            int no_gen1 = arr[1][rnd2];
+            System.out.println("Random number from the arr[0]= "+no_gen1);
 
-        int[] randNum = {rnd, rnd2, rnd3};
-        System.out.println("randNum[0] : "+randNum[0]);
-        System.out.println("randNum[1] : "+randNum[1]);
-        System.out.println("randNum[2] : "+randNum[2]);
-        int Num1 = getRandom(randNum);
-        int Num2 = getRandom(randNum);
+            int rnd3 = new Random().nextInt(arr[2].length);
+            int no_gen2 = arr[2][rnd3];
+            System.out.println("Random number from the arr[0]= "+no_gen2);
 
-        System.out.println(Num1+" "+Num2);
+            int[] randNum = {no_gen, no_gen1, no_gen2};
+//        System.out.println("randNum[0] : "+randNum[0]);                      // checking if randNum array generated is write or not
+//        System.out.println("randNum[1] : "+randNum[1]);
+//        System.out.println("randNum[2] : "+randNum[2]);
+            float Num1 = getRandom(randNum);
+            float Num2 = getRandom(randNum);
 
-        // Basic Math operations I need used to solve are : Addition, Subtraction, Multiplication, Division
+            System.out.println(Num1+" "+Num2);
 
+            // Basic Math operations I need used to solve are : Addition, Subtraction, Multiplication, Division + adding complex operations : square, square_root, cube, cube_root, x percentage of y
+            int[] op = {1,2,3,4};
+            int rd = new Random().nextInt(op.length);
+            System.out.println(rd);
+            System.out.println("Random number from the op["+rd+"]= "+op[rd]);
 
+            int choice = op[rd];
+            float answer,sysOp;
+
+            while(choice>0)
+            {
+                if (choice==1)                      // Addition
+                {
+                    System.out.print("Do the operation : "+(Num1+" + "+Num2)+" = ");
+                    sysOp = Num1 + Num2;
+                    answer = sc.nextInt();
+                    if (answer == sysOp)
+                    {
+                        System.out.println("*_* Your answer is correct");
+                        break; //Run full code again
+                    }
+                    else
+                    {
+                        choice = 1;
+                    }
+                }
+                else if(choice==2)               //Multiplication
+                {
+                    System.out.print("Do the operation : "+(Num1+" X "+Num2)+" = ");
+                    sysOp = Num1 * Num2;
+                    answer = sc.nextInt();
+                    if (answer == sysOp)
+                    {
+                        System.out.println("*_* Your answer is correct");
+                        break; //Run full code again
+                    }
+                    else
+                    {
+                        choice = 2;
+                    }
+                }
+                else if(choice==3)                 //Subtraction
+                {
+                    System.out.print("Do the operation : "+(Num1+" - "+Num2)+" = ");
+                    sysOp = Num1 - Num2;
+                    answer = sc.nextInt();
+                    if (answer == sysOp)
+                    {
+                        System.out.println("*_* Your answer is correct");
+                        break; //Run full code again
+                    }
+                    else
+                    {
+                        choice = 3;
+                    }
+                }
+                else                               //division
+                {
+                    System.out.print("Do the operation : "+(Num1+" / "+Num2)+" = ");
+                    sysOp = Num1 / Num2;
+                    answer = sc.nextInt();
+                    if (answer == sysOp)
+                    {
+                        System.out.println("*_* Your answer is correct");
+                        break; //Run full code again
+                    }
+                    else
+                    {
+                        choice = 4;
+                    }
+                }
+            }
+            System.out.println("-------------------------------------------------------------------------------");
+            System.out.print("For next Operation press n or N else press any key : ");
+            status = sc.next().charAt(0);
+            System.out.println("-------------------------------------------------------------------------------");
+        }
+
+        System.out.println("END OF CODE");
     }
 }
 
