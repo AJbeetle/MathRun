@@ -1,3 +1,4 @@
+// Test Programs
 package MathRun;
 import java.util.Random;
 import java.util.Scanner;
@@ -18,7 +19,8 @@ public class test
         // Selecting any random operation from char array
         /*char[] op = {'+','-','/','*'};
         System.out.println(op[0]);
-        System.out.println("Adding : "+(1+op[0]+2));                // failed*/
+        System.out.println("Adding : "+(1+op[0]+2));                // failed
+        */
 
         int Num1 = 4;
         int Num2 = 2;

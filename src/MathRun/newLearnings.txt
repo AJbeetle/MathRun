@@ -1,0 +1,179 @@
+I wanted an array with row one containing 1 digit numbers, row 2 containing 2 digit numbers and 3rd row containing 3 digit numbers
+So, total number of elements in
+1st row = 1 digit number [0-9]      = 10 elements     [_formula for number of whole numbers between any two numbers including them is : { (finalNumber - initialNumber)+1 }_]
+2nd row = 2 digit number [10-99]    = 90 elements
+3rd row = 3 digit number [100-999]  = 900 elements
+
+FIRST ATTEMPT OF DOING MY PROJECT
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+1. Creating an array and appending values to it
+   ------------------------------------------------------------------------------------
+   => created a append system to an array from startingValue till less than endingValue
+      >>> import java.util.stream.InStream;
+      >>> // value to be added in array starts from 0 and goes till less than 10
+      >>> int[] Sing_digit = IntStream.iterate(0,i->i<10, i->i+1).toArray();          // creating single digit array
+   ------------------------------------------------------------------------------------
+
+   ------------------------------------------------------------------------------------
+   => created a append system to an array from startingValue till less than endingValue
+      >>> import java.util.stream.InStream;
+      >>> // value to be added in array starts from 0 and goes till less than 10
+      >>> int[] S_digit = IntStream.range(0,10).toArray();                               //Single digit array
+      >>> int[] D_digit = IntStream.range(10,100).toArray();                             //Double digit Array
+      >>> int[] T_digit = IntStream.range(100,1000).toArray();                           //Triple digit Array
+   ------------------------------------------------------------------------------------
+
+
+
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+2. Defining Jagged Array : Array that can have different number of coloumns for each row [number of rows are fixed during defining the array]
+   ------------------------------------------------------------------------------------
+   => jagged Array
+      >>> int arr[][] = new int[3][];      // arr is jagged array having 3 rows which can have diff number of coloumns
+
+      >>> // defining column size for each row
+      >>> arr[0] = new int[10];
+      >>> arr[1] = new int[90];
+      >>> arr[2] = new int[900];
+
+      >>> // entering the desired values in each row of the arr
+      >>> arr[0] = IntStream.range(0,10).toArray();
+      >>> arr[1] = IntStream.range(10,100).toArray();
+      >>> arr[2] = IntStream.range(100,1000).toArray();
+
+      >>> // printing the values of 2D Jagged array
+      >>> System.out.println("The values of 2D jagged array");
+      >>> for(int i = 0; i < arr.length; i++)
+      >>> {
+      >>>     for (int j = 0; j < arr[i].length; j++)
+      >>>         System.out.printf(arr[i][j] + " ");
+      >>>     System.out.println();
+      >>> }
+   ------------------------------------------------------------------------------------
+
+
+
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+3. Now as I was successfull in creating the array from which my calculator will take data, Now I wanted to program to randomly select any two numbers from the whole array
+   for this I defined three variables such that to take three random numbers from 3 rows of array.
+   ------------------------------------------------------------------------------------
+   => Random number generator from 0-n
+      >>> import java.util.Random;
+
+      >>> int index1, index2, index3;
+      >>> Random rand = new Random();
+      >>> index1 = rand.nextInt(10);              // gives random output number from 0-9
+      >>> index2 = rand.nextInt(91);              // gives random output number from 0-90
+      >>> index3 = rand.nextInt(901);             // gives random output number from 0-900
+   ------------------------------------------------------------------------------------
+
+
+
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+4. Now I have got three random indexes for coloumn of jagged array, now I will create an array having indexes of row then I will create some logic to choose any random (row,coloumn) positioning coordinate for my 1st number
+   ------------------------------------------------------------------------------------
+   => Creating random (rowIn,colIn) position for my 1st random number from jagged array dataset
+      >>> import java.util.Random;
+      >>> int[] column = {index1, index2, index3};
+      >>> int[] row = {0,1,2};
+      >>> int rowIn = getRandom(row);          // created a user defined function to get random values from the arr
+      >>> // finally after some logic getting (rowIn,colIn) as my actual coordinates for the number
+      >>> int colIn;
+      >>> if (rowIn == 0)
+      >>> {
+      >>>     colIn = index1;
+      >>> }
+      >>> else if(rowIn == 1)
+      >>> {
+      >>>     colIn = index2;
+      >>> }
+      >>> else
+      >>> {
+      >>>     colIn = getRandom(column);
+      >>>
+      >>> // user defined function
+      >>> public static int getRandom(int[] array)
+      >>> {
+      >>>     int rnd = new Random().nextInt(array.length);
+      >>>     System.out.println(rnd);
+      >>>     return array[rnd];
+      >>>
+      >>> // Printing the 1st random number generated by me from dataset
+      >>> System.out.println(rowIn+" "+colIn);
+      >>> System.out.println("Random Number between 0-999 from my array \"arr\" is as follows :- ");
+      >>> int Num1 = arr[rowIn][colIn];
+   ------------------------------------------------------------------------------------
+
+   ------------------------------------------------------------------------------------
+   => Way to select the random number from an array
+      >>> import java.util.Random;
+      >>> int arr[3][];
+      >>> int rand = new Random().nextInt(arr[rowIndex].length);
+      >>> int randNum = arr[rowIndex][rand];
+      >>> System.out.println("Random number from the arr[0]= "+randNum);
+   ------------------------------------------------------------------------------------
+
+
+
+
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+5. Similarly you can generate 2nd random number
+
+
+
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+6. After doing all this I realised that I can create desired data set i.e. array from point 2 method and I can select three random values from 3 rows of array by using method of point 4 using getRandom(n) function
+
+
+
+
+
+SECOND ATTEMPT OF DOING MY PROJECT
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+1. Created Jagged Array                                     = reference "point2"
+2. Added different values to its different rows             = reference "point2"
+3. displayed the array                                      = reference "point2"
+4. getting randomNumber from each row of array              = reference "point4SecondPart"
+5. Making an array for new generated numbers and then randomly choosing any two
+6. Basic operation calculation to be asked by user
+7. Integrating more arithmetic functions : Square, SquareRoot, Cube, CubeRoot, X percentage of Y
+8. writing function for truncating a float value to two decimal places
+   => Truncating Function
+      >>> public static float truncate(double value, int places)
+      >>> {
+      >>>     float multiplier = (float) Math.pow(10, places);
+      >>>     return (float) Math.floor(multiplier * value) / multiplier;
+      >>> }
+9. 'x' raise to power 'y' function in java
+   => Power function in Math package
+      >>> import java.lang.Math;
+      >>> a = Math.pow(x,y)   // results double datatype such as x^y
+
+
+
+
+
+
+
+TRY to Simplify the CODE
+1. think of some logic to create a insertion of single, double amd triple digit number in 2D array in their assigned rows
+
+
+___AfterCompletion ERRORS________________________________________________________________________________________________
+1. whenever x percent of y vala solution is given wrong it moves to next question
+   :due to defining of arrays inside the else condition only                                              = DONE
+2. Define upto how many decimal points user have to write thr answer                                      = DONE
+3. While taking cuberoot specify in program that you are taking only 0.333 raise
+   to the power not more than that. As it alters the answer example : 2^0.33 != 2^0.3333                  = DONE
+4. The decimal point answertype questions are having error :                                              = DONE
+   -> If I give right answer at first then it verifies the answer with either upto
+      3 places after decimal or 2 places after decimal
+   -> If i give wrong answer at first then it only verifies the answer with upto
+      3 places after the decimal and this is all absurd cause I fixed the places
+      to 2 for truncate function
+
+5. Keep numerator greater than denominator always in division rule                                        = DONE
+6. Keep only single digit or double digit numbers in cube of number operation.                            = DONE
+   data set should be - 1digit numbers and 2digit numbers such as 10,20,30,....90, and 11,12,....45 & 50.
+   Anyone can tell cube of 50 so you can ignore that dataset
+7. Similarly ask square operation for such a dataset that is possible to be solved                        = DONE
