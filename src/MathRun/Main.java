@@ -51,7 +51,7 @@ public class Main
             int rnd2New = new Random().nextInt(arr[1].length);
             int no_gen1 = arr[1][rnd2];
             int no_gen1New = arr[1][rnd2New];
-//            System.out.println("Random number from the arr[1]= "+no_gen1);
+//            System.out.4println("Random number from the arr[1]= "+no_gen1);
 
             int rnd3 = new Random().nextInt(arr[2].length);
             int rnd3New = new Random().nextInt(arr[2].length);
